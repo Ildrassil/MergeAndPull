@@ -1,9 +1,12 @@
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CustomerRepo {
-    Map<Integer, Customer> customerMap;
+    Map<Integer, Customer> customerMap = new HashMap<>();
     public void creatCustomer(int id, String firstName, String lastName, String email, String phoneNumber, String address, String city, String state, String zipCode, String country){
-        customerMap.put(1,new Customer(id, firstName, lastName, email, phoneNumber, address, city, state, zipCode, country));
+        customerMap.put(id,new Customer(id, firstName, lastName, email, phoneNumber, address, city, state, zipCode, country));
     }
     public Customer getCustomer(int id){
         return customerMap.get(id);
@@ -106,5 +109,8 @@ public class CustomerRepo {
                 return customer;
         }
         return null;
+    }
+    public List<Customer> getAllCustomers(){
+        return customerMap.values().stream().collect(Collectors.toList());
     }
 }
